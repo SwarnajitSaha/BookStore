@@ -7,21 +7,32 @@ using System.Threading.Tasks;
 using BookStore.Data;
 using BookStore.Models;
 using BookStore.Models.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
+
+
 
 
 namespace BookStore.Data
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDBContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> option) : base(option)
         {
             
         }
+        //we need to add this dbset for every table we manualy create of modify the EF generated table like Identity tabils
+
         public DbSet<Category> CategoryTable { get; set; }
         public DbSet<Product> ProductTable { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> CompanyTable { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, CategoryName = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, CategoryName = "SciFi", DisplayOrder = 2 },
