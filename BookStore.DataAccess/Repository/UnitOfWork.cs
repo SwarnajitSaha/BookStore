@@ -16,8 +16,6 @@ namespace BookStore.DataAccess.Repository
 
         public IProductRepository ProductRepository { get; private set; }
 
-        public ICompanyRepository CompanyRepository { get; private set; }
-
         private ApplicationDBContext _db;
 
         public UnitOfWork(ApplicationDBContext db)
@@ -25,7 +23,6 @@ namespace BookStore.DataAccess.Repository
             _db = db;
             CategoryRepository = new CategoryRepository(_db);
             ProductRepository = new ProductRepository(_db);
-            CompanyRepository = new CompanyRepository(_db);
         }
         public void save()
         {

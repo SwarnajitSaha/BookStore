@@ -3,13 +3,10 @@ using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models.Model;
-using Microsoft.AspNetCore.Authorization;
-using BooksStore.Utility;
 
 namespace BookStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles =SD.Role_Admin)] // this ensure if the Admin did't log in noboday can access the pages under this controller
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,7 +17,7 @@ namespace BookStore.Areas.Admin.Controllers
 
         public IActionResult Category()
         {
-            List<Category> categories = _unitOfWork.CategoryRepository.GetAll().ToList();
+            List<Category> categories = _unitOfWork.CategoryRepository.GetAll(includeProperties: "Category").ToList();
             return View(categories);
         }
 
