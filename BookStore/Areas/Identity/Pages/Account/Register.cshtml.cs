@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using BooksStore.Utility;
+using BookStore.Utility;
 using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models;
 using Microsoft.AspNetCore.Authentication;

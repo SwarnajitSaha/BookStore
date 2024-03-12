@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using BookStore.Data;
 using BookStore.DataAccess.Repository.IRepository;
 using BookStore.DataAccess.Repository;
-using BooksStore.Utility;
+using BookStore.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 
