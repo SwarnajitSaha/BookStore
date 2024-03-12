@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BooksStore.Utility
+namespace BookStore.Utility
 {
     public class EmailSender : IEmailSender
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            return Task.CompletedTask;
+            throw new NotImplementedException();
         }
     }
 }
