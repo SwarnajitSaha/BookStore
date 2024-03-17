@@ -29,6 +29,8 @@ namespace BookStore.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Company> CompanyTable { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<OrderHeader> OrderHeadersTable { get; set; }
+        public DbSet<OrderDetail> OrderDetailTable { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

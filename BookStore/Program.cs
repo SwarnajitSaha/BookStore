@@ -5,6 +5,7 @@ using BookStore.DataAccess.Repository.IRepository;
 using BookStore.DataAccess.Repository;
 using BookStore.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Stripe;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,9 +19,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddRazorPages(); //this is for the Razor pages which we added for Identificaiton       
 
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe")); //this qill auto set the propery of StripeSettings fatch form the Stripe Secton of the appsettings.json
+
 
 //if we want define user characterestics we need to add e model which must need to InharitThe IdentityUser ->(BookStore.Modes->ApplicationUser)
-
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -48,6 +50,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<String>();
 
 app.UseRouting();
 app.UseAuthentication();
