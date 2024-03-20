@@ -12,6 +12,9 @@ Welcome to **Bookshop**, an ASP.NET Core 8 MVC project designed to streamline th
 - **User Experience Optimization**: Users can browse the website, add products to their cart, make payments securely using Stripe payment integration, and dynamically modify their orders for a seamless shopping experience.
 - **Microsoft Identity Integration**: Bookshop leverages Microsoft Identity to manage user authentication and authorization effectively.
 - **SQL Database Integration**: User data is securely stored and managed using SQL database technology, ensuring reliability and scalability.
+- **N-tier Architecture**: Bookshop follows an N-tier architecture, ensuring separation of concerns and scalability.
+- **Repository Pattern**: The repository pattern is utilized to abstract the data access layer, promoting code maintainability and testability.
+- **Unit of Work**: Bookshop implements the Unit of Work pattern to manage transactions and ensure data consistency.
 
 ## Getting Started
 
