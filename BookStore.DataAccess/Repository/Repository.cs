@@ -13,6 +13,7 @@ namespace BookStore.DataAccess.Repository
     {
         private readonly ApplicationDBContext _db;
         internal DbSet<T> dbSet;
+        private static readonly char[] commaSeparator = { ',' };
 
         public Repository(ApplicationDBContext db)
         {
@@ -47,7 +48,7 @@ namespace BookStore.DataAccess.Repository
 
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach (var i in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var i in includeProperties.Split(commaSeparator, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(i);
                 }
@@ -70,7 +71,7 @@ namespace BookStore.DataAccess.Repository
 
             if(!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var i in includeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                foreach(var i in includeProperties.Split(commaSeparator,StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(i);
                 }

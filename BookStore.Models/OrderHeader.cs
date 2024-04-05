@@ -12,7 +12,7 @@ namespace BookStore.Models
 {
     public class OrderHeader
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public String ApplicationUserID { get; set; }
         [ForeignKey("ApplicationUserID")]
         [ValidateNever]

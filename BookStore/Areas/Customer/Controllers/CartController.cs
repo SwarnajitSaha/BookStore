@@ -1,4 +1,4 @@
-﻿using BookStore.DataAccess.Repository;
+﻿﻿using BookStore.DataAccess.Repository;
 using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models;
 using BookStore.Models.ViewModels;
@@ -221,7 +221,7 @@ namespace BookStore.Areas.Customer.Controllers
                 _unitOfWork.save();
 
                 //now we redirect to stripe payment page for the payment page
-                Response.Headers.Add("Location", session.Url);
+                Response.Headers.Append("Location", session.Url);
                 return new StatusCodeResult(303); //it means we are redirection to new url
             
             }
@@ -238,8 +238,8 @@ namespace BookStore.Areas.Customer.Controllers
 
                 var service = new SessionService();
                 Session session = service.Get(orderHader.SessionId);
-
-                if (session.PaymentStatus.ToLower() == "paid") //can be paid/unpaid/no_payment_required
+             
+                if (session.PaymentStatus.Equals("paid", StringComparison.OrdinalIgnoreCase)) //can be paid/unpaid/no_payment_required
                 {
                     _unitOfWork.OrderHeaderRepository.UpdateScriptPaymentId(id, session.Id, session.PaymentIntentId);
                     _unitOfWork.OrderHeaderRepository.UpadateStatus(id, SD.StatusApproved, SD.PaymetStatusApproved);
@@ -254,7 +254,7 @@ namespace BookStore.Areas.Customer.Controllers
             return View(id); 
         }
 
-        private double GetPriceBaseOnQuantity(ShoppingCart shoppingCart)
+        private static double GetPriceBaseOnQuantity(ShoppingCart shoppingCart)
         {
             if (shoppingCart.Count<=50) return shoppingCart.ProductObj.Price;
             else if (shoppingCart.Count<=100) return shoppingCart.ProductObj.Price50;

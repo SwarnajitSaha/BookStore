@@ -22,10 +22,10 @@ namespace BookStore.Models
         [Range(0, 1000, ErrorMessage = "Please Enter value between 1 to 1000")]
         public int Count { get; set; }
 
-        public string ApplicationUserID { get; set; }
+        public string? ApplicationUserID { get; set; }
         [ForeignKey("ApplicationUserID")]
         [ValidateNever]
-        public ApplicationUser ApplicationUser {get; set; }
+        public ApplicationUser? ApplicationUser {get; set; }
 
         [NotMapped] // this will ensure not to save this property in DB but we can use it UI;
         public double Price { get; set; }

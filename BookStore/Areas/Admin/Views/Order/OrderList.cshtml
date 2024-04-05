@@ -1,0 +1,106 @@
+﻿@{
+    var status = Context.Request.Query["status"];
+    var pending = "text-primary";
+    var inprocess = "text-primary";
+    var completed = "text-primary";
+    var approved = "text-primary";
+    var all = "text-primary";
+
+    switch (status)
+    {
+        case "inprocess":
+            inprocess = "active text-white bg-primary";
+            break;
+        case "pending":
+            pending = "active text-white bg-primary";
+            break;
+        case "completed":
+            completed = "active text-white bg-primary";
+            break;
+        case "approved":
+            approved = "active text-white bg-primary";
+            break;
+        default:
+            all = "active text-white bg-primary";
+            break;
+
+    }
+
+}
+
+@model List<OrderHeader>
+
+<div class="card shadow border-0 m-3">
+    <div class="card-header bg-danger bg-gradient ml-3 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Order List</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between pb-5 pt-2">
+            <span></span>
+            <ul class="list-group list-group-horizontal-sm">
+                <a class="text-decoration-none" asp-controller="" asp-action="" asp-route-inprocess="inprocess">
+                <li class="list-group-item @inprocess">In Process</li>
+                </a>
+                <a class="text-decoration-none" asp-controller="" asp-action="" asp-route-pending="pending">
+
+                <li class="list-group-item @pending">Payment Pending</li>
+                </a>
+                <a class="text-decoration-none" asp-controller="" asp-action="" asp-route-completed="completed">
+                <li class="list-group-item @completed">Completed</li>
+                </a>
+                <a class="text-decoration-none" asp-controller="" asp-action="" asp-route-approved="approved">
+                <li class="list-group-item @approved">Approved</li>
+                </a>
+                <a class="text-decoration-none" asp-controller="" asp-action="" asp-route-all="all">
+                <li class="list-group-item @all">All</li>
+                </a>
+            </ul>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>PhoneNumber</th>
+                    <th>Email</th>
+                    <th>OrderStatus</th>
+                    <th>OrderTotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+
+                @foreach (var obj in Model)
+                {
+                    <tr class="pt-2">
+                        <td>@obj.Id</td>
+                        <td>@obj.Name</td>
+                        <td>@obj.PhoneNumber</td>
+                        <td>@obj.ApplicationUser_Nev.Email</td>
+                        <td>@obj.OrderStatus </td>
+                        <td>@obj.OrderTotal</td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                @* asp-route-anyName will send the id to the controller after clicking the edit button *@
+                                <a asp-controller="Order" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-primary m-2">
+                                    <i class="bi bi-pencil-square">Edit</i>
+                                </a>
+@*                                 <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger m-2">
+                                    <i class="bi bi-trash3-fill">Delete</i>
+                                </a> *@
+                            </div>
+                        </td>
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
