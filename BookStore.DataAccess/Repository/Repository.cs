@@ -13,6 +13,7 @@ namespace BookStore.DataAccess.Repository
     {
         private readonly ApplicationDBContext _db;
         internal DbSet<T> dbSet;
+        private static readonly char[] commaSeparator = { ',' };
 
         public Repository(ApplicationDBContext db)
         {
@@ -29,28 +30,48 @@ namespace BookStore.DataAccess.Repository
         }
 
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>>? filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet; // here we assign the complete DBset to the query
+            IQueryable<T> query;
+
+            if (tracked) // to aboid tracking by EF Core
+            {
+                query = dbSet; // here we assign the complete DBset to the query        
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();  //this AsNoTracking stop auto Tracking in EF core
+                // here we assign the complete DBset to the query
+            }
+
             query = query.Where(filter);
 
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach (var i in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var i in includeProperties.Split(commaSeparator, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(i);
                 }
             }
 
             return query.FirstOrDefault();
+
+
         }
         //here includeProperties will recive coma seperated value
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
+         
             IQueryable<T> query = dbSet;
+
+            if(filter != null)
+            {
+                query = query.Where(filter);
+            }
+
             if(!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var i in includeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                foreach(var i in includeProperties.Split(commaSeparator,StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(i);
                 }

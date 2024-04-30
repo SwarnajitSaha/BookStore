@@ -9,18 +9,17 @@ using System.Threading.Tasks;
 
 namespace BookStore.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category> , ICategoryRepository
+    public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository 
     {
-        public ApplicationDBContext _db;
-
-        public CategoryRepository(ApplicationDBContext db) : base(db)
+        public readonly ApplicationDBContext _db;
+        public OrderDetailRepository(ApplicationDBContext db) : base(db)
         {
             _db = db;
         }
 
-        public void update(Category category)
+        public void update(OrderDetail orderDetail)
         {
-            _db.CategoryTable.Update(category);
+            _db.OrderDetailTable.Update(orderDetail);
         }
     }
 }

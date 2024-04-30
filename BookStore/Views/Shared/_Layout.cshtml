@@ -15,7 +15,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BulkyWeb</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookStore</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,8 +29,9 @@
                         <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Category">Category</a>
                         </li> *@
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="OrderList">OrderList</a>
                         </li>
+<<<<<<< HEAD
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -41,6 +42,29 @@
                                 <div class="dropdown-divider"></div>
                                 @* <a class="dropdown-item" href="#">Separated link</a> *@
                             </div>
+=======
+@*                         @if (User.IsInRole(SD.Role_Admin))
+                        { *@
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Management</a>
+                              <div class="dropdown-menu">
+                                  <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Category">Category</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="nav-link text-dark" asp-area="ProductProcess" asp-controller="Product" asp-action="ProductList">Product </a>
+                                  <div class="dropdown-divider"></div>
+
+                                    <a class="nav-link text-dark" asp-area="Company" asp-controller="Companies" asp-action="CompanyList">Company </a>
+                                    <div class="dropdown-divider"></div>
+
+                                  @* <a class="dropdown-item" href="#">Separated link</a> *@
+                              </div>
+                          </li>                            
+                      @*   } *@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                <i class="bi bi-cart" ></i> &nbsp;(0)
+                            </a>
+>>>>>>> swarnajit
                         </li>
                     </ul>
                 </div>
@@ -53,7 +77,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top mt-3 footer">
         <div class="container">
             &copy; 2024 - BookStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

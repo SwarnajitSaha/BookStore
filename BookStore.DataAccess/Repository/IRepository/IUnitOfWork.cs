@@ -10,6 +10,14 @@ namespace BookStore.DataAccess.Repository.IRepository
     {
         ICategoryRepository CategoryRepository { get; }
         IProductRepository ProductRepository { get; }
+<<<<<<< HEAD
+=======
+        ICompanyRepository CompanyRepository { get; }
+        IShoppingRepository ShoppingRepository { get; }
+        IApplicationUserRepository ApplicationUserRepository { get; }
+        IOrderHeaderRepository OrderHeaderRepository { get; }
+        IOrderDetailRepository OrderDetailRepository { get; }
+>>>>>>> swarnajit
         void save();
     }
 }

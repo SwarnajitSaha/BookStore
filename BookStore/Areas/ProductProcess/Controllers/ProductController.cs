@@ -1,6 +1,10 @@
 ﻿using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models.Model;
 using BookStore.Models.ViewModels;
+<<<<<<< HEAD
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> swarnajit
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
